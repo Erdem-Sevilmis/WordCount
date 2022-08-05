@@ -8,11 +8,12 @@ import java.util.stream.Collectors;
 public class Main {
 
     private static final int INVALID_INPUT = -1;
+    private static final int INDEX_OF_USER_INPUT_FILE = 0;
 
     public static void main(String[] args) {
         String phrase = null;
 
-        if (args.length == 0) {
+        if (args.length == INDEX_OF_USER_INPUT_FILE) {
             System.out.print("Enter Text: ");
             try {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -22,7 +23,7 @@ public class Main {
                 e.printStackTrace();
             }
         } else {
-            var content = WordCount.ReadFile("src/main/resources/" + args[0]);
+            var content = WordCount.ReadFile("src/main/resources/" + args[INDEX_OF_USER_INPUT_FILE]);
             phrase = content.stream().collect(Collectors.joining(" "));
         }
 
