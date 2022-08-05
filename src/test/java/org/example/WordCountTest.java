@@ -36,6 +36,36 @@ class WordCountTest {
     }
 
     @Test
+    void countTwoWordsSurroundedByWhiteSpaces() {
+        WordCount wc = new WordCount("       word   word    ", false);
+        assertEquals(4, wc.GetWordCount()); // Should be 2
+    }
+
+    @Test
+    void doesNotcountWordContainingNumbers() {
+        WordCount wc = new WordCount("wo33rd", false);
+        assertEquals(1, wc.GetWordCount()); // Should be 0
+    }
+
+    @Test
+    void doesNotcountWordContainingSpecialCharacters() {
+        WordCount wc = new WordCount("wo$$rd", false);
+        assertEquals(1, wc.GetWordCount()); // Should be 0
+    }
+
+    @Test
+    void returns0ForEmptyInput() {
+        WordCount wc = new WordCount("", false);
+        assertEquals(-1, wc.GetWordCount()); // Should be 0
+    }
+
+    @Test
+    void doesNotCountPunctuations() {
+        WordCount wc = new WordCount(". , ! ? ;", false);
+        assertEquals(-1, wc.GetWordCount()); // Should be 0
+    }
+
+    @Test
     void readFromFile() {
         var results = WordCount.ReadFile("src/main/resources/test.txt");
         assertEquals(5, results.size());
