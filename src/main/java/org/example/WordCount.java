@@ -33,7 +33,7 @@ public class WordCount {
         return Collections.emptyList();
     }
 
-    public int GetWordCount() {
+    public int getWordCount() {
         if (valid(userInput)) {
             var words = userInput.split(" ");
             var stopWordsCount = stopWordsCount(words);
