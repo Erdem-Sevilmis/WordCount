@@ -16,6 +16,7 @@ public class WordCount {
     private final List<String> stopWords = new ArrayList<>();
 
     public WordCount(String phrase) {
+        Objects.requireNonNull(phrase, "user input must not be null");
         Phrase = phrase.trim();
         var content = ReadFile(STOP_WORDS_PATH);
         content.forEach((stopWord) -> this.stopWords.add(String.format(" %s ", stopWord)));
