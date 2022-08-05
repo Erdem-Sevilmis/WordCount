@@ -52,7 +52,7 @@ public class WordCount {
 
     private int AmountOfStopWords(String[] parts) {
         int count = 0;
-        Pattern pattern = Pattern.compile(stopWords.stream().collect(Collectors.joining("|")));
+        Pattern pattern = Pattern.compile(String.join("|", stopWords));
         Matcher matcher = pattern.matcher(Phrase);
 
         while (matcher.find()) {
