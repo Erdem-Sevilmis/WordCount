@@ -2,6 +2,9 @@ package org.example;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,22 +22,13 @@ public class WordCount {
     }
 
     public static List<String> ReadFile(String path) {
-        List<String> content = new ArrayList<>();
         try {
-            File myObj = new File(path);
-            Scanner myReader = new Scanner(myObj);
-
-            while (myReader.hasNextLine()) {
-                String line = myReader.nextLine();
-                content.add(line);
-            }
-            myReader.close();
-
-        } catch (FileNotFoundException e) {
+            return Files.readAllLines(Paths.get(path));
+        } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-        return content;
+        return Collections.emptyList();
     }
 
     public int GetWordCount() {
