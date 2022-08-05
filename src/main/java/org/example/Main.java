@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
         String phrase = null;
 
-        if (args.length == INDEX_OF_USER_INPUT_FILE) {
+        if (args.length == 0) {
             System.out.print("Enter Text: ");
             try {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
