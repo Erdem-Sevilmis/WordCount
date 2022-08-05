@@ -8,9 +8,9 @@ import java.util.regex.Pattern;
 
 public class WordCount {
     private static final int INVALID_INPUT = -1;
-    private final String Phrase;
     private static final String STOP_WORDS_PATH = "src/main/resources/stopwords.txt";
-    List<String> stopWords = new ArrayList<>();
+    private final String Phrase;
+    private final List<String> stopWords = new ArrayList<>();
 
     public WordCount(String phrase) {
         Phrase = phrase.trim();
