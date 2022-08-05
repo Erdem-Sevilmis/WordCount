@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
+import static java.util.Arrays.asList;
+
 public class WordCount {
     private static final int INVALID_INPUT = -1;
     private static final String STOP_WORDS_FILE_PATH = "src/main/resources/stopwords.txt";
@@ -18,9 +20,7 @@ public class WordCount {
     public WordCount(String phrase) {
         Objects.requireNonNull(phrase, "user input must not be null");
         this.phrase = phrase.trim();
-
-        var content = readAllLinesOfFile(STOP_WORDS_FILE_PATH);
-        content.forEach((stopWord) -> this.stopWords.add(String.format(" %s ", stopWord)));
+        this.stopWords.addAll(readAllLinesOfFile(STOP_WORDS_FILE_PATH));
     }
 
     public static List<String> readAllLinesOfFile(String path) {
@@ -36,22 +36,18 @@ public class WordCount {
     public int GetWordCount() {
         if (Valid()) {
             var parts = phrase.split(" ");
-            var stopWordsCount = stopWordsCount();
+            var stopWordsCount = stopWordsCount(parts);
             return parts.length - stopWordsCount;
         } else {
             return INVALID_INPUT;
         }
     }
 
-    private int stopWordsCount() {
-        var pattern = Pattern.compile(String.join("|", stopWords));
-        var matcher = pattern.matcher(phrase);
-
-        var count = 0;
-        while (matcher.find()) {
-            count++;
-        }
-        return count;
+    private int stopWordsCount(String[] parts) {
+        return stopWords.stream()
+                .map(sw -> Collections.frequency(asList(parts), sw))
+                .mapToInt(nr -> nr)
+                .sum();
     }
 
     private boolean Valid() {
