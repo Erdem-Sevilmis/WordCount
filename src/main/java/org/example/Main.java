@@ -24,11 +24,11 @@ public class Main {
         }
 
         var wc = new WordCount(phrase);
-        var result = wc.GetWordCount();
-        if (result == INVALID_INPUT) {
+        var wordCount = wc.GetWordCount();
+        if (wordCount == INVALID_INPUT) {
             System.out.println("Phrase is not valid!");
         } else {
-            System.out.println("Number of words: " + result);
+            System.out.println("Number of words: " + wordCount);
         }
     }
 }
