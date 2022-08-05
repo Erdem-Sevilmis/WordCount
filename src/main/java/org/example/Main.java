@@ -20,7 +20,7 @@ public class Main {
             phrase = String.join(" ", content);
         }
 
-        WordCount wc = new WordCount(phrase);
+        var wc = new WordCount(phrase);
         var result = wc.GetWordCount();
         if (result == INVALID_INPUT) {
             System.out.println("Phrase is not valid!");
