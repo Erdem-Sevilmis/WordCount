@@ -12,14 +12,14 @@ import java.util.regex.Pattern;
 import static java.util.Arrays.asList;
 
 public class WordCount {
-    private static final int INVALID_INPUT = -1;
+    private static final int INVALID_USER_INPUT = -1;
     private static final String STOP_WORDS_FILE_PATH = "src/main/resources/stopwords.txt";
-    private final String phrase;
+    private final String userInput;
     private final List<String> stopWords = new ArrayList<>();
 
-    public WordCount(String phrase) {
-        Objects.requireNonNull(phrase, "user input must not be null");
-        this.phrase = phrase.trim();
+    public WordCount(String userInput) {
+        Objects.requireNonNull(userInput, "user input must not be null");
+        this.userInput = userInput.trim();
         this.stopWords.addAll(readAllLinesOfFile(STOP_WORDS_FILE_PATH));
     }
 
@@ -35,11 +35,11 @@ public class WordCount {
 
     public int GetWordCount() {
         if (Valid()) {
-            var parts = phrase.split(" ");
-            var stopWordsCount = stopWordsCount(parts);
-            return parts.length - stopWordsCount;
+            var words = userInput.split(" ");
+            var stopWordsCount = stopWordsCount(words);
+            return words.length - stopWordsCount;
         } else {
-            return INVALID_INPUT;
+            return INVALID_USER_INPUT;
         }
     }
 
@@ -52,7 +52,7 @@ public class WordCount {
 
     private boolean Valid() {
         var pattern = Pattern.compile("[a-zA-Z]");
-        var matcher = pattern.matcher(phrase);
+        var matcher = pattern.matcher(userInput);
 
         return matcher.find();
     }
