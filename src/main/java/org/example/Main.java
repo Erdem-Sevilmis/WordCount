@@ -24,7 +24,7 @@ public class Main {
             }
         } else {
             var content = WordCount.ReadFile("src/main/resources/" + args[INDEX_OF_USER_INPUT_FILE]);
-            phrase = content.stream().collect(Collectors.joining(" "));
+            phrase = String.join(" ", content);
         }
 
         WordCount wc = new WordCount(phrase);
