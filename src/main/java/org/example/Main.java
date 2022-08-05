@@ -9,7 +9,7 @@ public class Main {
     private static final String RESOURCES_DIRECTORY_PATH = "src/main/resources/";
 
     public static void main(String[] args) {
-        String userInput = null;
+        String userInput;
 
         if (args.length == 0) {
             System.out.print("Enter Text: ");
