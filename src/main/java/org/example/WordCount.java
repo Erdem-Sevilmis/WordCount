@@ -1,12 +1,12 @@
 package org.example;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.*;
-import java.util.regex.Matcher;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class WordCount {
@@ -44,10 +44,10 @@ public class WordCount {
     }
 
     private int AmountOfStopWords() {
-        Pattern pattern = Pattern.compile(String.join("|", stopWords));
-        Matcher matcher = pattern.matcher(Phrase);
+        var pattern = Pattern.compile(String.join("|", stopWords));
+        var matcher = pattern.matcher(Phrase);
 
-        int count = 0;
+        var count = 0;
         while (matcher.find()) {
             count++;
         }
@@ -55,8 +55,8 @@ public class WordCount {
     }
 
     private boolean Valid() {
-        Pattern pattern = Pattern.compile("[a-zA-Z]");
-        Matcher matcher = pattern.matcher(Phrase);
+        var pattern = Pattern.compile("[a-zA-Z]");
+        var matcher = pattern.matcher(Phrase);
 
         return matcher.find();
     }
