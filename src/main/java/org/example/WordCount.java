@@ -44,14 +44,17 @@ public class WordCount {
     }
 
     public int GetWordCount() {
-        if (!Valid()) return -1;
+        if (Valid()) {
+            var parts = Phrase.split(" ");
 
-        var parts = Phrase.split(" ");
+            if (!stopWord) return parts.length;
 
-        if (!stopWord) return parts.length;
+            var stopWordsCount = AmountOfStopWords(parts);
+            return parts.length - stopWordsCount;
+        } else {
+            return -1;
+        }
 
-        var stopWordsCount = AmountOfStopWords(parts);
-        return parts.length - stopWordsCount;
     }
 
     private int AmountOfStopWords(String[] parts) {
