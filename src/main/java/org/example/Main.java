@@ -9,21 +9,21 @@ public class Main {
     private static final String RESOURCES_DIRECTORY_PATH = "src/main/resources/";
 
     public static void main(String[] args) {
-        String phrase = null;
+        String userInput = null;
 
         if (args.length == 0) {
             System.out.print("Enter Text: ");
             try (Scanner in = new Scanner(System.in)) {
-                phrase = in.nextLine();
+                userInput = in.nextLine();
             }
         } else {
             var userInputFileContent = WordCount.readAllLinesOfFile(String.format("%s%s",
                     RESOURCES_DIRECTORY_PATH,
                     args[INDEX_OF_USER_INPUT_FILE]));
-            phrase = String.join(" ", userInputFileContent);
+            userInput = String.join(" ", userInputFileContent);
         }
 
-        var wc = new WordCount(phrase);
+        var wc = new WordCount(userInput);
         var wordCount = wc.GetWordCount();
         if (wordCount == INVALID_INPUT) {
             System.out.println("Phrase is not valid!");
