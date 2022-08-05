@@ -16,7 +16,7 @@ public class WordCount {
     List<String> stopWords = new ArrayList<>();
 
     public WordCount(String phrase, boolean stopWords) {
-        Phrase = phrase;
+        Phrase = phrase.trim();
         stopWord = stopWords;
         if (stopWords) {
             var content = ReadFile(stopWordsPath);
