@@ -34,7 +34,7 @@ public class WordCount {
     }
 
     public int GetWordCount() {
-        if (Valid()) {
+        if (Valid(userInput)) {
             var words = userInput.split(" ");
             var stopWordsCount = stopWordsCount(words);
             return words.length - stopWordsCount;
@@ -50,7 +50,7 @@ public class WordCount {
                 .sum();
     }
 
-    private boolean Valid() {
+    private boolean Valid(String userInput) {
         var pattern = Pattern.compile("[a-zA-Z]");
         var matcher = pattern.matcher(userInput);
 
