@@ -16,7 +16,7 @@ public class WordCount {
     public WordCount(String phrase) {
         Phrase = phrase.trim();
         var content = ReadFile(stopWordsPath);
-        content.stream().forEach((stopWord) -> {
+        content.forEach((stopWord) -> {
             this.stopWords.add(" " + stopWord + " ");
         });
     }
