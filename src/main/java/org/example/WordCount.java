@@ -68,7 +68,7 @@ public class WordCount {
     }
 
     private boolean Valid() {
-        Pattern pattern = Pattern.compile("[^a-zA-Z]");
+        Pattern pattern = Pattern.compile("[a-zA-Z]");
         Matcher matcher = pattern.matcher(Phrase);
 
         if (matcher.find()) return true;

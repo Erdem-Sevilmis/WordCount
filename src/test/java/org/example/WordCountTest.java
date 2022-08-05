@@ -18,6 +18,12 @@ class WordCountTest {
     }
 
     @Test
+    void countOneWord() {
+        WordCount wc = new WordCount("word", false);
+        assertEquals(1, wc.GetWordCount());
+    }
+
+    @Test
     void readFromFile() {
         var results = WordCount.ReadFile("src/main/resources/test.txt");
         assertEquals(5, results.size());
