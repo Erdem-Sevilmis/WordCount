@@ -4,70 +4,70 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class WordCountTest {
+class WordCounterTest {
     @Test
     void getWordCountlvl1() {
-        WordCount wc = new WordCount("Heey my name is Erdem");
+        WordCounter wc = new WordCounter("Heey my name is Erdem");
         assertEquals(5, wc.getWordCount());
     }
 
     @Test
     void getWordCountlvl2() {
-        WordCount wc = new WordCount("Mary had a little lamb");
+        WordCounter wc = new WordCounter("Mary had a little lamb");
         assertEquals(4, wc.getWordCount());
     }
 
     @Test
     void countOneWord() {
-        WordCount wc = new WordCount("word");
+        WordCounter wc = new WordCounter("word");
         assertEquals(1, wc.getWordCount());
     }
 
     @Test
     void countTwoWords() {
-        WordCount wc = new WordCount("word word");
+        WordCounter wc = new WordCounter("word word");
         assertEquals(2, wc.getWordCount());
     }
 
     @Test
     void countOneWordSurroundedByWhiteSpaces() {
-        WordCount wc = new WordCount("       word     ");
+        WordCounter wc = new WordCounter("       word     ");
         assertEquals(1, wc.getWordCount());
     }
 
     @Test
     void countTwoWordsSurroundedByWhiteSpaces() {
-        WordCount wc = new WordCount("       word   word    ");
+        WordCounter wc = new WordCounter("       word   word    ");
         assertEquals(4, wc.getWordCount()); // Should be 2
     }
 
     @Test
     void doesNotcountWordContainingNumbers() {
-        WordCount wc = new WordCount("wo33rd");
+        WordCounter wc = new WordCounter("wo33rd");
         assertEquals(1, wc.getWordCount()); // Should be 0
     }
 
     @Test
     void doesNotcountWordContainingSpecialCharacters() {
-        WordCount wc = new WordCount("wo$$rd");
+        WordCounter wc = new WordCounter("wo$$rd");
         assertEquals(1, wc.getWordCount()); // Should be 0
     }
 
     @Test
     void returns0ForEmptyInput() {
-        WordCount wc = new WordCount("");
+        WordCounter wc = new WordCounter("");
         assertEquals(-1, wc.getWordCount()); // Should be 0
     }
 
     @Test
     void doesNotCountPunctuations() {
-        WordCount wc = new WordCount(". , ! ? ;");
+        WordCounter wc = new WordCounter(". , ! ? ;");
         assertEquals(-1, wc.getWordCount()); // Should be 0
     }
 
     @Test
     void readFromFile() {
-        var results = WordCount.readAllLinesOfFile("src/main/resources/test.txt");
+        var results = WordCounter.readAllLinesOfFile("src/main/resources/test.txt");
         assertEquals(5, results.size());
     }
 }

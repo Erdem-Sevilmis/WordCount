@@ -11,14 +11,14 @@ import java.util.regex.Pattern;
 
 import static java.util.Arrays.asList;
 
-public class WordCount {
+public class WordCounter {
     private static final int INVALID_USER_INPUT = -1;
     private static final String STOP_WORDS_FILE_PATH = "src/main/resources/stopwords.txt";
     private static final Pattern WORD_REGEX_PATTERN = Pattern.compile("[a-zA-Z]");
     private final String userInput;
     private final List<String> stopWords = new ArrayList<>();
 
-    public WordCount(String userInput) {
+    public WordCounter(String userInput) {
         Objects.requireNonNull(userInput, "user input must not be null");
         this.userInput = userInput.trim();
         this.stopWords.addAll(readAllLinesOfFile(STOP_WORDS_FILE_PATH));

@@ -17,14 +17,14 @@ public class Main {
                 userInput = in.nextLine();
             }
         } else {
-            var userInputFileContent = WordCount.readAllLinesOfFile(String.format("%s%s",
+            var userInputFileContent = WordCounter.readAllLinesOfFile(String.format("%s%s",
                     RESOURCES_DIRECTORY_PATH,
                     args[INDEX_OF_USER_INPUT_FILE]));
             userInput = String.join(" ", userInputFileContent);
         }
 
-        var wc = new WordCount(userInput);
-        var wordCount = wc.getWordCount();
+        var wordCounter = new WordCounter(userInput);
+        var wordCount = wordCounter.getWordCount();
 
         if (wordCount == INVALID_INPUT) {
             System.out.println("Phrase is not valid!");
