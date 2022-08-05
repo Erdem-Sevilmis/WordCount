@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class WordCount {
     private static final int INVALID_INPUT = -1;
@@ -41,14 +40,14 @@ public class WordCount {
     public int GetWordCount() {
         if (Valid()) {
             var parts = Phrase.split(" ");
-            var stopWordsCount = AmountOfStopWords(parts);
+            var stopWordsCount = AmountOfStopWords();
             return parts.length - stopWordsCount;
         } else {
             return INVALID_INPUT;
         }
     }
 
-    private int AmountOfStopWords(String[] parts) {
+    private int AmountOfStopWords() {
         int count = 0;
         Pattern pattern = Pattern.compile(String.join("|", stopWords));
         Matcher matcher = pattern.matcher(Phrase);
