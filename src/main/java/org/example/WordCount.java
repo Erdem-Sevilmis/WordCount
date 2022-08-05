@@ -44,10 +44,10 @@ public class WordCount {
     }
 
     private int AmountOfStopWords() {
-        int count = 0;
         Pattern pattern = Pattern.compile(String.join("|", stopWords));
         Matcher matcher = pattern.matcher(Phrase);
 
+        int count = 0;
         while (matcher.find()) {
             count++;
         }
