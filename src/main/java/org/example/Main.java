@@ -1,9 +1,6 @@
 package org.example;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.stream.Collectors;
+import java.util.Scanner;
 
 public class Main {
 
@@ -15,12 +12,8 @@ public class Main {
 
         if (args.length == 0) {
             System.out.print("Enter Text: ");
-            try {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-                phrase = reader.readLine();
-            } catch (IOException e) {
-                System.out.println("An error occurred.");
-                e.printStackTrace();
+            try (Scanner in = new Scanner(System.in)) {
+                phrase = in.nextLine();
             }
         } else {
             var content = WordCount.ReadFile("src/main/resources/" + args[INDEX_OF_USER_INPUT_FILE]);
