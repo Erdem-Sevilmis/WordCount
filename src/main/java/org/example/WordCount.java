@@ -14,6 +14,7 @@ import static java.util.Arrays.asList;
 public class WordCount {
     private static final int INVALID_USER_INPUT = -1;
     private static final String STOP_WORDS_FILE_PATH = "src/main/resources/stopwords.txt";
+    private static final Pattern WORD_REGEX_PATTERN = Pattern.compile("[a-zA-Z]");
     private final String userInput;
     private final List<String> stopWords = new ArrayList<>();
 
@@ -51,9 +52,7 @@ public class WordCount {
     }
 
     private boolean valid(String userInput) {
-        var pattern = Pattern.compile("[a-zA-Z]");
-        var matcher = pattern.matcher(userInput);
-
+        var matcher = WORD_REGEX_PATTERN.matcher(userInput);
         return matcher.find();
     }
 }
