@@ -17,10 +17,10 @@ public class Main {
                 phrase = in.nextLine();
             }
         } else {
-            var content = WordCount.readFile(String.format("%s%s",
+            var userInputFileContent = WordCount.readAllLinesOfFile(String.format("%s%s",
                     RESOURCES_DIRECTORY_PATH,
                     args[INDEX_OF_USER_INPUT_FILE]));
-            phrase = String.join(" ", content);
+            phrase = String.join(" ", userInputFileContent);
         }
 
         var wc = new WordCount(phrase);

@@ -67,7 +67,7 @@ class WordCountTest {
 
     @Test
     void readFromFile() {
-        var results = WordCount.readFile("src/main/resources/test.txt");
+        var results = WordCount.readAllLinesOfFile("src/main/resources/test.txt");
         assertEquals(5, results.size());
     }
 }

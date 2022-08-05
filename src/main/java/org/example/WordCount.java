@@ -19,11 +19,11 @@ public class WordCount {
         Objects.requireNonNull(phrase, "user input must not be null");
         this.phrase = phrase.trim();
 
-        var content = readFile(STOP_WORDS_PATH);
+        var content = readAllLinesOfFile(STOP_WORDS_PATH);
         content.forEach((stopWord) -> this.stopWords.add(String.format(" %s ", stopWord)));
     }
 
-    public static List<String> readFile(String path) {
+    public static List<String> readAllLinesOfFile(String path) {
         try {
             return Files.readAllLines(Paths.get(path));
         } catch (IOException e) {
