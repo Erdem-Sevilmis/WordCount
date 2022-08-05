@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 
 public class WordCount {
     private static final int INVALID_INPUT = -1;
-    private static final String STOP_WORDS_PATH = "src/main/resources/stopwords.txt";
+    private static final String STOP_WORDS_FILE_PATH = "src/main/resources/stopwords.txt";
     private final String phrase;
     private final List<String> stopWords = new ArrayList<>();
 
@@ -19,7 +19,7 @@ public class WordCount {
         Objects.requireNonNull(phrase, "user input must not be null");
         this.phrase = phrase.trim();
 
-        var content = readAllLinesOfFile(STOP_WORDS_PATH);
+        var content = readAllLinesOfFile(STOP_WORDS_FILE_PATH);
         content.forEach((stopWord) -> this.stopWords.add(String.format(" %s ", stopWord)));
     }
 
