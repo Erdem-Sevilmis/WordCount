@@ -3,7 +3,6 @@ package org.example;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.Buffer;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -27,7 +26,7 @@ public class Main {
             phrase = content.stream().collect(Collectors.joining(" "));
         }
 
-        WordCount wc = new WordCount(phrase, true);
+        WordCount wc = new WordCount(phrase);
         var result = wc.GetWordCount();
         if (result == INVALID_INPUT) {
             System.out.println("Phrase is not valid!");

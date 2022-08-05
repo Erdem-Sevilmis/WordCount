@@ -11,18 +11,14 @@ public class WordCount {
     private static final int INVALID_INPUT = -1;
     private final String Phrase;
     private final String stopWordsPath = "src/main/resources/stopwords.txt";
-    private boolean stopWord = false;
     List<String> stopWords = new ArrayList<>();
 
-    public WordCount(String phrase, boolean stopWords) {
+    public WordCount(String phrase) {
         Phrase = phrase.trim();
-        stopWord = stopWords;
-        if (stopWords) {
-            var content = ReadFile(stopWordsPath);
-            content.stream().forEach((stopWord) -> {
-                this.stopWords.add(" " + stopWord + " ");
-            });
-        }
+        var content = ReadFile(stopWordsPath);
+        content.stream().forEach((stopWord) -> {
+            this.stopWords.add(" " + stopWord + " ");
+        });
     }
 
     public static List<String> ReadFile(String path) {
@@ -47,18 +43,11 @@ public class WordCount {
     public int GetWordCount() {
         if (Valid()) {
             var parts = Phrase.split(" ");
-
-            if (stopWord) {
-                var stopWordsCount = AmountOfStopWords(parts);
-                return parts.length - stopWordsCount;
-            } else {
-                return parts.length;
-            }
-
+            var stopWordsCount = AmountOfStopWords(parts);
+            return parts.length - stopWordsCount;
         } else {
             return INVALID_INPUT;
         }
-
     }
 
     private int AmountOfStopWords(String[] parts) {
