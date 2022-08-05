@@ -9,12 +9,12 @@ import java.util.regex.Pattern;
 public class WordCount {
     private static final int INVALID_INPUT = -1;
     private final String Phrase;
-    private final String stopWordsPath = "src/main/resources/stopwords.txt";
+    private static final String STOP_WORDS_PATH = "src/main/resources/stopwords.txt";
     List<String> stopWords = new ArrayList<>();
 
     public WordCount(String phrase) {
         Phrase = phrase.trim();
-        var content = ReadFile(stopWordsPath);
+        var content = ReadFile(STOP_WORDS_PATH);
         content.forEach((stopWord) -> this.stopWords.add(" " + stopWord + " "));
     }
 
