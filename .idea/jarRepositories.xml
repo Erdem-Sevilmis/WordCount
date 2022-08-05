@@ -7,14 +7,34 @@
       <option name="url" value="https://repo.maven.apache.org/maven2" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="beeone-snapshots" />
+      <option name="name" value="beeone-snapshots" />
+      <option name="url" value="https://nexus.g-labs.io/repository/snapshots" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="central" />
       <option name="name" value="Maven Central repository" />
       <option name="url" value="https://repo1.maven.org/maven2" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="beeone-public" />
+      <option name="name" value="beeone-public" />
+      <option name="url" value="https://nexus.g-labs.io/repository/public" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="jboss.community" />
       <option name="name" value="JBoss Community repository" />
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="beeone-releases" />
+      <option name="name" value="beeone-releases" />
+      <option name="url" value="https://nexus.g-labs.io/repository/releases" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="beeone-thirdparty" />
+      <option name="name" value="beeone-thirdparty" />
+      <option name="url" value="https://nexus.g-labs.io/repository/thirdparty" />
     </remote-repository>
   </component>
 </project>
