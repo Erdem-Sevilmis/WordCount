@@ -47,10 +47,13 @@ public class WordCount {
         if (Valid()) {
             var parts = Phrase.split(" ");
 
-            if (!stopWord) return parts.length;
+            if (stopWord) {
+                var stopWordsCount = AmountOfStopWords(parts);
+                return parts.length - stopWordsCount;
+            } else {
+                return parts.length;
+            }
 
-            var stopWordsCount = AmountOfStopWords(parts);
-            return parts.length - stopWordsCount;
         } else {
             return -1;
         }
