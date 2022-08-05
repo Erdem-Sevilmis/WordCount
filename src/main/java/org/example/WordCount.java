@@ -8,8 +8,8 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class WordCount {
-    private String Phrase;
-    private String stopWordsPath = "src/main/resources/stopwords.txt";
+    private final String Phrase;
+    private final String stopWordsPath = "src/main/resources/stopwords.txt";
     private boolean stopWord = false;
     List<String> stopWords = new ArrayList<>();
 
@@ -75,7 +75,6 @@ public class WordCount {
         Pattern pattern = Pattern.compile("[a-zA-Z]");
         Matcher matcher = pattern.matcher(Phrase);
 
-        if (matcher.find()) return true;
-        return false;
+        return matcher.find();
     }
 }
