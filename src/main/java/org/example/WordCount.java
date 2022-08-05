@@ -36,14 +36,14 @@ public class WordCount {
     public int GetWordCount() {
         if (Valid()) {
             var parts = phrase.split(" ");
-            var stopWordsCount = AmountOfStopWords();
+            var stopWordsCount = stopWordsCount();
             return parts.length - stopWordsCount;
         } else {
             return INVALID_INPUT;
         }
     }
 
-    private int AmountOfStopWords() {
+    private int stopWordsCount() {
         var pattern = Pattern.compile(String.join("|", stopWords));
         var matcher = pattern.matcher(phrase);
 
