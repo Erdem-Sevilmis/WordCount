@@ -25,6 +25,7 @@ public class Main {
 
         var wc = new WordCount(userInput);
         var wordCount = wc.GetWordCount();
+
         if (wordCount == INVALID_INPUT) {
             System.out.println("Phrase is not valid!");
         } else {
