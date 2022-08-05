@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class WordCount {
+    private static final int INVALID_INPUT = -1;
     private final String Phrase;
     private final String stopWordsPath = "src/main/resources/stopwords.txt";
     private boolean stopWord = false;
@@ -55,7 +56,7 @@ public class WordCount {
             }
 
         } else {
-            return -1;
+            return INVALID_INPUT;
         }
 
     }

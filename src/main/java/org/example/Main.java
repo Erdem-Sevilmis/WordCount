@@ -7,6 +7,9 @@ import java.nio.Buffer;
 import java.util.stream.Collectors;
 
 public class Main {
+
+    private static final int INVALID_INPUT = -1;
+
     public static void main(String[] args) {
         String phrase = null;
 
@@ -26,7 +29,7 @@ public class Main {
 
         WordCount wc = new WordCount(phrase, true);
         var result = wc.GetWordCount();
-        if (result == -1) {
+        if (result == INVALID_INPUT) {
             System.out.println("Phrase is not valid!");
         } else {
             System.out.println("Number of words: " + result);
