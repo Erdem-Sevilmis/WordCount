@@ -1,8 +1,11 @@
 package org.example;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -18,10 +21,11 @@ public class Main {
                 System.out.println("An error occurred.");
                 e.printStackTrace();
             }
-        } else {
-            var content = WordCount.readFile("src/main/resources/" + args[0]);
+        } else if(Files.exists(Path.of(args[0])) ){
+            var content = WordCount.readFile(args[0]);
             phrase = content.stream().collect(Collectors.joining(" "));
         }
+
 
         WordCount wc = new WordCount(phrase, true);
         var result = wc.getWordCount();
