@@ -8,17 +8,17 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class WordCount {
-    private boolean stopWord;
-    private final String stopWordsPath = "src/main/resources/stopwords.txt";
+    private final boolean usingStopWord;
+    private final String STOPWORDS_PATH = "src/main/resources/stopwords.txt";
     private final List<String> stopWords = new ArrayList<>();
     private final String regEx = "[^A-Za-z ]";
     private final String phrase;
 
-    public WordCount(String phrase, boolean stopWords) {
+    public WordCount(String phrase, boolean usingStopWord) {
         this.phrase = phrase;
-        stopWord = stopWords;
-        if (stopWords) {
-            var content = readFile(stopWordsPath);
+        this.usingStopWord = usingStopWord;
+        if (usingStopWord) {
+            var content = readFile(STOPWORDS_PATH);
             content.forEach((stopWord) -> this.stopWords.add(" " + stopWord + " "));
         }
     }
@@ -51,7 +51,7 @@ public class WordCount {
             filteredWords.set(i, " " + trimedWord + " ");
         }
 
-        if (!stopWord) return filteredWords.size();
+        if (!usingStopWord) return filteredWords.size();
         var stopWordsCount = amountOfStopWords(filteredWords);
         return filteredWords.size() - stopWordsCount;
     }
@@ -71,9 +71,9 @@ public class WordCount {
         Pattern p = Pattern.compile(String.join("|", stopWords));
         Matcher matcher = p.matcher(String.join("",words));
 
-        while (matcher.find()) {
+        while (matcher.find())
             count++;
-        }
+
         return count;
     }
 }
