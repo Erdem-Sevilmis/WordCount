@@ -26,7 +26,6 @@ public class Main {
             phrase = content.stream().collect(Collectors.joining(" "));
         }
 
-
         WordCount wc = new WordCount(phrase, true);
         var result = wc.getWordCount();
         System.out.println("Number of words: " + result);

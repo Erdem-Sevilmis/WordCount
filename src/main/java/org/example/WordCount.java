@@ -2,10 +2,7 @@ package org.example;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -47,10 +44,15 @@ public class WordCount {
 
     public int getWordCount() {
         List<String> allWords = Arrays.asList(phrase.split(" "));
+
         var filteredWords = validate(allWords);
+        for (int i = 0; i < filteredWords.size(); i++) {
+            var trimedWord = filteredWords.get(i).trim();
+            filteredWords.set(i, " " + trimedWord + " ");
+        }
 
         if (!stopWord) return filteredWords.size();
-        var stopWordsCount = amountOfStopWords();
+        var stopWordsCount = amountOfStopWords(filteredWords);
         return filteredWords.size() - stopWordsCount;
     }
 
@@ -64,12 +66,14 @@ public class WordCount {
         }).collect(Collectors.toList());
     }
 
-    private int amountOfStopWords() {
+    private int amountOfStopWords(List<String> words) {
         int count = 0;
         Pattern p = Pattern.compile(String.join("|", stopWords));
-        Matcher matcher = p.matcher(phrase);
+        Matcher matcher = p.matcher(String.join("",words));
 
-        while (matcher.find()) {count++;}
+        while (matcher.find()) {
+            count++;
+        }
         return count;
     }
 }
