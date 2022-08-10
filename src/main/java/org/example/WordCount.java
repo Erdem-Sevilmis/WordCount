@@ -1,5 +1,6 @@
 package org.example;
 
+import javax.xml.stream.events.Characters;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -47,13 +48,13 @@ public class WordCount {
 
     private List<String> validate(List<String> allWords) {
         var p = Pattern.compile("[^A-Za-z ]");
-        return allWords.stream().filter(word -> {
-            if (word.isEmpty()) {
-                return false;
-            }
-            var m = p.matcher(word);
-            return !m.find();
-        }).collect(Collectors.toList());
+        return allWords.stream()
+                .filter(word -> !word.isEmpty())
+                .filter(word -> {
+                    var m = p.matcher(word);
+                    return !m.find();
+                })
+                .collect(Collectors.toList());
     }
 
     private int amountOfStopWords(List<String> words) {
