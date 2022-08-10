@@ -21,14 +21,13 @@ public class Main {
                 System.out.println("An error occurred.");
                 e.printStackTrace();
             }
-        } else if(Files.exists(Path.of(args[0])) ){
+        } else if (Files.exists(Path.of(args[0]))) {
             var content = WordCount.readFile(args[0]);
-            phrase = content.stream().collect(Collectors.joining(" "));
+            phrase = String.join(" ", content);
         }
 
-        WordCount wc = new WordCount(phrase, true);
+        WordCount wc = new WordCount(phrase);
         var result = wc.getWordCount();
         System.out.println("Number of words: " + result);
-
     }
 }

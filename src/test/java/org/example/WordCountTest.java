@@ -7,13 +7,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class WordCountTest {
     @Test
     void getWordCountlvl1() {
-        WordCount wc = new WordCount("Heey my name is Erdem", false);
+        WordCount wc = new WordCount("Heey my name is Erdem");
         assertEquals(5, wc.getWordCount());
     }
 
     @Test
     void getWordCountlvl2() {
-        WordCount wc = new WordCount("Mary had a little lamb", true);
+        WordCount wc = new WordCount("Mary had a little lamb");
         assertEquals(4, wc.getWordCount());
     }
 
