@@ -2,6 +2,10 @@ package org.example;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,24 +27,13 @@ public class WordCount {
     public static List<String> readFile(String path) {
         Objects.requireNonNull(path, "Path must not be null.");
 
-        List<String> content = new ArrayList<>();
+        List<String> result;
         try {
-            //ToDo: FileRead with java api
-            //  Files.line(Path.get(...))
-            //  Files.readAllLine(Path.get(...))
-            File myObj = new File(path);
-            Scanner myReader = new Scanner(myObj);
-
-            while (myReader.hasNextLine()) {
-                String line = myReader.nextLine();
-                content.add(line.trim());
-            }
-            myReader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
+            result = Files.readAllLines(Paths.get(path));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        return content;
+        return result;
     }
 
     public int getWordCount() {
