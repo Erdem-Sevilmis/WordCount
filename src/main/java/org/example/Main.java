@@ -9,20 +9,22 @@ import java.nio.file.Path;
 import java.util.stream.Collectors;
 
 public class Main {
+    private static final int STOP_WORDS_INDEX = 0;
+
     public static void main(String[] args) {
         String phrase = null;
 
         if (args.length == 0) {
             System.out.print("Enter Text: ");
             try {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+                var reader = new BufferedReader(new InputStreamReader(System.in));
                 phrase = reader.readLine();
             } catch (IOException e) {
                 System.out.println("An error occurred.");
                 e.printStackTrace();
             }
-        } else if (Files.exists(Path.of(args[0]))) {
-            var content = WordCount.readFile(args[0]);
+        } else if (Files.exists(Path.of(args[STOP_WORDS_INDEX]))) {
+            var content = WordCount.readFile(args[STOP_WORDS_INDEX]);
             phrase = String.join(" ", content);
         }
 
