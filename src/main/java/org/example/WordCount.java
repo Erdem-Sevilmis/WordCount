@@ -33,7 +33,7 @@ public class WordCount {
     }
 
     public int getWordCount() {
-        List<String> allWords = Arrays.asList(phrase.split(" "));
+        var allWords = Arrays.asList(phrase.split(" "));
 
         var filteredWords = validate(allWords);
         filteredWords.replaceAll(s -> String.format(" %s ", s.trim()));

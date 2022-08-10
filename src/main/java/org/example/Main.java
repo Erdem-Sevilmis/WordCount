@@ -26,7 +26,7 @@ public class Main {
             phrase = String.join(" ", content);
         }
 
-        WordCount wc = new WordCount(phrase);
+        var wc = new WordCount(phrase);
         var result = wc.getWordCount();
         System.out.println("Number of words: " + result);
     }
