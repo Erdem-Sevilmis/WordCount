@@ -17,7 +17,7 @@ class MainTest {
 
         ByteArrayInputStream inputStream = new ByteArrayInputStream((phrase).getBytes());
         var actual = getActualOutput(inputStream, new String[]{});
-        var expected = "Enter Text: Number of words: 6";
+        var expected = "Enter Text: Number of words: 6, unique: 6";
         assertEquals(expected, actual);
     }
 
