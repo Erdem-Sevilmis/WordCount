@@ -62,7 +62,7 @@ class WordCountTest {
 
     @ParameterizedTest
     @ValueSource(strings = {
-            "Word. word& word",
+            "Wo!rd word& word",
             "!Word word word$",
             "word W§§ord",
             "W$ord §$ word"
@@ -74,7 +74,7 @@ class WordCountTest {
 
     @ParameterizedTest
     @ValueSource(strings = {
-            "     Wo2rd.     wod& word    ",
+            "     Wo2rd     wod& word    ",
             "   !Word word word4",
             "   wo1r§d    word W§§ord         ",
             "W$ord         §$ word         "
@@ -92,6 +92,17 @@ class WordCountTest {
         WordCount wc = new WordCount(phrase);
         assertEquals(0, wc.getWordCount());
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.",
+    })
+    void getUniqueWordCount(String phrase) {
+        WordCount wc = new WordCount(phrase);
+        assertEquals(9,wc.getWordCount());
+        assertEquals(7, wc.uniqueWords);
+    }
+
     @ParameterizedTest
     @ValueSource(strings = {
             "src/main/resources/test.txt"
