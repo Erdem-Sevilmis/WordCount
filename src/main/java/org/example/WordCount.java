@@ -68,6 +68,8 @@ public class WordCount {
     }
 
     private List<String> filterStopWords(List<String> words) {
-        return words.stream().filter(word -> !word.matches(String.join("|", stopWords))).collect(Collectors.toList());
+        return words.stream()
+                .filter(word -> !word.matches(String.join("|", stopWords)))
+                .collect(Collectors.toList());
     }
 }
