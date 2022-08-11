@@ -31,7 +31,7 @@ public class Main {
 
         var wc = new WordCount(phrase);
         var result = wc.getWordCount();
-        System.out.println("Number of words: " + result);
+        System.out.printf("Number of words: %d, unique: %d%n", result, wc.uniqueWords);
     }
 
 }
