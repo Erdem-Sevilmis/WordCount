@@ -55,6 +55,15 @@ public class WordCount {
         return result;
     }
 
+    /**
+     * Filters out:
+     * <ul>
+     *     <li>all words containing none alphabetic chars except for dots `.` and hyphens `-`
+     *     <li>all strings defined in file `stopWords.txt`
+     * </ul>
+     *
+     * @return number of valid words
+     */
     public int getWordCount() {
         var allWords = Arrays.asList(phrase.split(" "));
 
