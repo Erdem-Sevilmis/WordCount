@@ -37,7 +37,12 @@ public class WordCount {
         content.forEach((stopWord) -> this.stopWords.add(format(" %s ", stopWord)));
     }
 
-
+    /**
+     * Read all lines from a file and returns them in a list.
+     *
+     * @param path The absolut path to the file.
+     * @return the lines from the file as a List;
+     */
     public static List<String> readFile(String path) {
         Objects.requireNonNull(path, "Path must not be null.");
 
