@@ -9,6 +9,22 @@ import java.util.stream.Collectors;
 
 import static java.lang.String.format;
 
+/**
+ * Class determines how many Words are in a given input.
+ *
+ * <p>
+ * The core functionality of this class is:
+ * <ul>
+ * <li>get input from user
+ * <li>filter any words containing unwanted symbols
+ * <li>filter any words matching a word from stopWords
+ * <li>return number of left words
+ * </ul>
+ *
+ * <p>
+ * The user input must be passed in the constructor
+ * The class provides a static readFile methode which may be used to extract the input
+ */
 public class WordCount {
     private final static String STOP_WORDS_PATH = "src/main/resources/stopwords.txt";
     private final List<String> stopWords = new ArrayList<>();
@@ -20,6 +36,7 @@ public class WordCount {
         var content = readFile(STOP_WORDS_PATH);
         content.forEach((stopWord) -> this.stopWords.add(format(" %s ", stopWord)));
     }
+
 
     public static List<String> readFile(String path) {
         Objects.requireNonNull(path, "Path must not be null.");
@@ -38,6 +55,7 @@ public class WordCount {
 
         var validatedWords = validate(allWords);
         validatedWords.replaceAll(s -> String.format(" %s ", s.trim()));
+
         var filteredWords = filterStopWords(validatedWords);
         uniqueWords = getUniqueWords(filteredWords);
         return filteredWords.size();
