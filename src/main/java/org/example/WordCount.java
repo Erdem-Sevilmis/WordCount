@@ -31,6 +31,12 @@ public class WordCount {
     private final String phrase;
     public int uniqueWords;
 
+    /**
+     * Create a new instance, this can be used to access the getWordCount method.
+     *
+     * @param phrase to use for the counting.
+     *               Must not be null.
+     */
     public WordCount(String phrase) {
         this.phrase = phrase;
         var content = readFile(STOP_WORDS_PATH);
