@@ -38,6 +38,8 @@ public class WordCount {
      *               Must not be null.
      */
     public WordCount(String phrase) {
+        Objects.requireNonNull(phrase, "Phrase must not be null.");
+
         this.phrase = phrase;
         var content = readFile(STOP_WORDS_PATH);
         content.forEach((stopWord) -> this.stopWords.add(format(" %s ", stopWord)));
