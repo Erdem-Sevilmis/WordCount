@@ -7,18 +7,16 @@ import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import static java.lang.String.format;
+import static java.util.Arrays.stream;
 
 public class WordCount {
-    private final static String STOP_WORDS_PATH = "src/main/resources/stopwords.txt";
+    private static final String STOP_WORDS_PATH = "src/main/resources/stopwords.txt";
     private final List<String> stopWords = new ArrayList<>();
     private final String phrase;
-    public int uniqueWords;
 
     public WordCount(String phrase) {
         this.phrase = phrase;
-        var content = readFile(STOP_WORDS_PATH);
-        content.forEach((stopWord) -> this.stopWords.add(format(" %s ", stopWord)));
+        stopWords.addAll(readFile(STOP_WORDS_PATH));
     }
 
     public static List<String> readFile(String path) {
@@ -33,43 +31,30 @@ public class WordCount {
         return result;
     }
 
-    public int getWordCount() {
+    public WordCountResult getWordCount() {
         var allWords = Arrays.asList(phrase.split(" "));
-
-        var validatedWords = validate(allWords);
-        validatedWords.replaceAll(s -> String.format(" %s ", s.trim()));
-        var filteredWords = filterStopWords(validatedWords);
-        uniqueWords = getUniqueWords(filteredWords);
-        return filteredWords.size();
+        var words = withoutStopWords(parseWords(allWords));
+        return new WordCountResult(words.size(), new HashSet<>(words).size());
     }
 
-    private int getUniqueWords(List<String> filteredWords) {
-        Set<String> uniqueWords = new HashSet<>(filteredWords);
-        return uniqueWords.size();
+    private List<String> parseWords(List<String> allWords) {
+        /*
+          Examples
+          Matching: "word", "word-word", "word.", " "
+          Not matching: ".", "-", "1", "wo4rd",
+         */
+        var regex = "[A-Za-z]+(-[A-Za-z]+)?\\.?";
+        var p = Pattern.compile(regex);
+        return allWords.stream()
+            .filter(word -> !word.isEmpty())
+            .filter(word -> p.matcher(word).matches())
+            .flatMap(word -> stream(word.split("-")))
+            .collect(Collectors.toList());
     }
 
-    private List<String> validate(List<String> allWords) {
-        var p = Pattern.compile("[^A-Za-z .-]");
-        var newAllWords= allWords.stream()
-                .filter(word -> !word.isEmpty())
-                .filter(word -> {
-                    var m = p.matcher(word);
-                    return !m.find();
-                })
-                .collect(Collectors.toList());
-
-        List<String> words = new ArrayList<>();
-        newAllWords.forEach(word -> {
-            var newWord = (word.replaceAll("[.-]", " ")).trim();
-            var parts = newWord.split(" ");
-            Collections.addAll(words, parts);
-        });
-        return words;
-    }
-
-    private List<String> filterStopWords(List<String> words) {
+    private List<String> withoutStopWords(List<String> words) {
         return words.stream()
-                .filter(word -> !word.matches(String.join("|", stopWords)))
-                .collect(Collectors.toList());
+            .filter(word -> !word.matches(String.join("|", stopWords)))
+            .collect(Collectors.toList());
     }
 }

@@ -30,8 +30,8 @@ public class Main {
         }
 
         var wc = new WordCount(phrase);
-        var result = wc.getWordCount();
-        System.out.printf("Number of words: %d, unique: %d%n", result, wc.uniqueWords);
+        WordCountResult result = wc.getWordCount();
+        System.out.printf("Number of words: %d, unique: %d%n", result.getRegularWordCount(), result.getUniqueWords());
     }
 
 }
