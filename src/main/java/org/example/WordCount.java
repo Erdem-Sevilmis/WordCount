@@ -2,6 +2,7 @@ package org.example;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.regex.Pattern;
@@ -28,14 +29,13 @@ import static java.lang.String.format;
 public class WordCount {
     private final static String STOP_WORDS_PATH = "src/main/resources/stopwords.txt";
     private final List<String> stopWords = new ArrayList<>();
-    private final String phrase;
     public int uniqueWords;
 
     /**
-     * Create a new instance, this can be used to access the getWordCount method.
+     * Uses internally {@link WordCount#readFile(String)} method to create stopWords.
      *
-     * @param phrase to use for the counting.
-     *               Must not be null.
+     * @throws IOException       if an I/O error occurs reading from the file or malformed or unmappable byte sequence is read
+     * @throws SecurityException In the case of the default provider, and a security manager is installed, the {@link SecurityManager#checkRead(String) checkRead} method is invoked to check read access to the file.
      */
     public WordCount(String phrase) {
         Objects.requireNonNull(phrase, "Phrase must not be null.");
@@ -46,11 +46,17 @@ public class WordCount {
     }
 
     /**
-     * Read all lines from a file and returns them in a list.
+     * Read all lines from a file and save them into a {@code Liat}.
+     * Uses internally {@link Files#readAllLines(Path)}
      *
      * @param path The absolut path to the file.
-     * @return the lines from the file as a List;
+     * @return the lines from the file as a {@code List}; whether the {@code
+     * List} is modifiable or not is implementation dependent and
+     * therefore not specified
+     * @throws IOException       if an I/O error occurs reading from the file or malformed or unmappable byte sequence is read
+     * @throws SecurityException In the case of the default provider, and a security manager is installed, the {@link SecurityManager#checkRead(String) checkRead} method is invoked to check read access to the file.
      */
+
     public static List<String> readFile(String path) {
         Objects.requireNonNull(path, "Path must not be null.");
 
@@ -70,6 +76,8 @@ public class WordCount {
      *     <li>all strings defined in file `stopWords.txt`
      * </ul>
      *
+     * @throws NullPointerException if phrase is null
+     * @param phrase to use for the counting. Must not be null.
      * @return number of valid words
      */
     public int getWordCount() {
@@ -90,7 +98,7 @@ public class WordCount {
 
     private List<String> validate(List<String> allWords) {
         var p = Pattern.compile("[^A-Za-z .-]");
-        var newAllWords= allWords.stream()
+        var newAllWords = allWords.stream()
                 .filter(word -> !word.isEmpty())
                 .filter(word -> {
                     var m = p.matcher(word);
