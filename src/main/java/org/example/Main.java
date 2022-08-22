@@ -10,7 +10,7 @@ public class Main {
     private static final int WORDS_FILE_INDEX = 0;
 
     public static void main(String[] args) {
-        String phrase = null;
+        String phrase;
 
         if (args.length == 0) {
             System.out.print("Enter Text: ");
@@ -29,8 +29,8 @@ public class Main {
             return;
         }
 
-        var wc = new WordCount(phrase);
-        var result = wc.getWordCount();
+        var wc = new WordCount();
+        var result = wc.wordCount(phrase);
         System.out.printf("Number of words: %d, unique: %d%n", result, wc.uniqueWords);
     }
 

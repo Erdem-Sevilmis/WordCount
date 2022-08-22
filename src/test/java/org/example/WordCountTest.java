@@ -12,8 +12,8 @@ class WordCountTest {
             "Word"
     })
     void getWordWithSingleWord(String phrase) {
-        WordCount wc = new WordCount(phrase);
-        assertEquals(1, wc.getWordCount());
+        WordCount wc = new WordCount();
+        assertEquals(1, wc.wordCount(phrase));
     }
 
     @ParameterizedTest
@@ -21,8 +21,8 @@ class WordCountTest {
             "Word word word"
     })
     void getWordWithMultipleWords(String phrase) {
-        WordCount wc = new WordCount(phrase);
-        assertEquals(3, wc.getWordCount());
+        WordCount wc = new WordCount();
+        assertEquals(3, wc.wordCount(phrase));
     }
 
     @ParameterizedTest
@@ -33,8 +33,8 @@ class WordCountTest {
             "Word w1ord wo2rd word3"
     })
     void getWordWithNumbers(String phrase) {
-        WordCount wc = new WordCount(phrase);
-        assertEquals(1, wc.getWordCount());
+        WordCount wc = new WordCount();
+        assertEquals(1, wc.wordCount(phrase));
     }
 
     @ParameterizedTest
@@ -44,8 +44,8 @@ class WordCountTest {
             "Word      word     word     "
     })
     void getWordWithWhitespaces(String phrase) {
-        WordCount wc = new WordCount(phrase);
-        assertEquals(3, wc.getWordCount());
+        WordCount wc = new WordCount();
+        assertEquals(3, wc.wordCount(phrase));
     }
 
     @ParameterizedTest
@@ -56,8 +56,8 @@ class WordCountTest {
             "Word   w1ord    wo2rd word3    "
     })
     void getWordWithWhitespacesAndNumbers(String phrase) {
-        WordCount wc = new WordCount(phrase);
-        assertEquals(1, wc.getWordCount());
+        WordCount wc = new WordCount();
+        assertEquals(1, wc.wordCount(phrase));
     }
 
     @ParameterizedTest
@@ -68,8 +68,8 @@ class WordCountTest {
             "W$ord §$ word"
     })
     void getWordWithSpecialCharacters(String phrase) {
-        WordCount wc = new WordCount(phrase);
-        assertEquals(1, wc.getWordCount());
+        WordCount wc = new WordCount();
+        assertEquals(1, wc.wordCount(phrase));
     }
 
     @ParameterizedTest
@@ -80,8 +80,8 @@ class WordCountTest {
             "W$ord         §$ word         "
     })
     void getWordWithSpecialCharactersAndWhitespacesAndNumbers(String phrase) {
-        WordCount wc = new WordCount(phrase);
-        assertEquals(1, wc.getWordCount());
+        WordCount wc = new WordCount();
+        assertEquals(1, wc.wordCount(phrase));
     }
 
     @ParameterizedTest
@@ -89,8 +89,8 @@ class WordCountTest {
             "off a the on",
     })
     void getWordWithStopWords(String phrase) {
-        WordCount wc = new WordCount(phrase);
-        assertEquals(0, wc.getWordCount());
+        WordCount wc = new WordCount();
+        assertEquals(0, wc.wordCount(phrase));
     }
 
     @ParameterizedTest
@@ -98,8 +98,8 @@ class WordCountTest {
             "Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.",
     })
     void getUniqueWordCount(String phrase) {
-        WordCount wc = new WordCount(phrase);
-        assertEquals(9,wc.getWordCount());
+        WordCount wc = new WordCount();
+        assertEquals(9,wc.wordCount(phrase));
         assertEquals(7, wc.uniqueWords);
     }
 
