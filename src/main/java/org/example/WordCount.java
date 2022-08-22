@@ -37,10 +37,7 @@ public class WordCount {
      * @throws IOException       if an I/O error occurs reading from the file or malformed or unmappable byte sequence is read
      * @throws SecurityException In the case of the default provider, and a security manager is installed, the {@link SecurityManager#checkRead(String) checkRead} method is invoked to check read access to the file.
      */
-    public WordCount(String phrase) {
-        Objects.requireNonNull(phrase, "Phrase must not be null.");
-
-        this.phrase = phrase;
+    public WordCount() {
         var content = readFile(STOP_WORDS_PATH);
         content.forEach((stopWord) -> this.stopWords.add(format(" %s ", stopWord)));
     }
@@ -65,6 +62,8 @@ public class WordCount {
             result = Files.readAllLines(Paths.get(path));
         } catch (IOException e) {
             throw new RuntimeException(e);
+        } catch (SecurityException e) {
+            throw new RuntimeException(e);
         }
         return result;
     }
@@ -80,7 +79,9 @@ public class WordCount {
      * @param phrase to use for the counting. Must not be null.
      * @return number of valid words
      */
-    public int getWordCount() {
+    public int wordCount(String phrase) {
+        Objects.requireNonNull(phrase);
+
         var allWords = Arrays.asList(phrase.split(" "));
 
         var validatedWords = validate(allWords);
