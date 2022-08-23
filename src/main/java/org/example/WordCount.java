@@ -9,30 +9,19 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static java.lang.String.format;
-
-/**
- * Class determines how many Words are in a given input.
- *
- * <p>
- * The core functionality of this class is:
- * <ul>
- * <li>get input from user
- * <li>filter any words containing unwanted symbols
- * <li>filter any words matching a word from stopWords
- * <li>return number of left words
- * </ul>
- *
- * <p>
- * The user input must be passed in the constructor
- * The class provides a static readFile methode which may be used to extract the input
- */
 public class WordCount {
-    private final static String STOP_WORDS_PATH = "src/main/resources/stopwords.txt";
+    /**
+     * Stop words are stored in a file named stopwords.txt which is bundled with the
+     * application and loaded from classpath. Stop words are: "on", "the", "off", "a" which are defined in the
+     * requirements.
+     */
     private final List<String> stopWords = new ArrayList<>();
+
+    private final static String STOP_WORDS_PATH = "src/main/resources/stopwords.txt";
     public int uniqueWords;
 
     /**
-     * Uses internally {@link WordCount#readFile(String)} method to create stopWords.
+     * Uses internally {@link WordCount#readFile(String)} method to create stopWords. For further information about stopWords read {@link WordCount#stopWords}.
      *
      * @throws IOException       if an I/O error occurs reading from the file or malformed or unmappable byte sequence is read
      * @throws SecurityException In the case of the default provider, and a security manager is installed, the {@link SecurityManager#checkRead(String) checkRead} method is invoked to check read access to the file.
@@ -50,6 +39,7 @@ public class WordCount {
      * @return the lines from the file as a {@code List}; whether the {@code
      * List} is modifiable or not is implementation dependent and
      * therefore not specified
+     *
      * @throws IOException       if an I/O error occurs reading from the file or malformed or unmappable byte sequence is read
      * @throws SecurityException In the case of the default provider, and a security manager is installed, the {@link SecurityManager#checkRead(String) checkRead} method is invoked to check read access to the file.
      */
@@ -60,29 +50,34 @@ public class WordCount {
         List<String> result;
         try {
             result = Files.readAllLines(Paths.get(path));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (SecurityException e) {
+        } catch (IOException | SecurityException e) {
             throw new RuntimeException(e);
         }
         return result;
     }
 
     /**
-     * Filters out:
-     * <ul>
-     *     <li>all words containing none alphabetic chars except for dots `.` and hyphens `-`
-     *     <li>all strings defined in file `stopWords.txt`
-     * </ul>
-     *
-     * @throws NullPointerException if phrase is null
-     * @param phrase to use for the counting. Must not be null.
-     * @return number of valid words
+     * Counts words in text which are separated by white-space(s) and only contains letters from the latin alphabet
+     * (A-Z,a-Z). Otherwise, words are not counted.
+     * <p>
+     * {@link WordCount#stopWords} are also not counted. If the stop words file can't be loaded, stop words are ignored.
+     * <br /><br />
+     * Examples:
+     * <pre>
+     *    "word" => 1
+     *    "word word" => 2
+     *    "word wo3rd" => 1 // "3" not in A-Z or a-z
+     *    "word, word" => 1 // "," not in A-Z or a-z
+     *    "word on" => 1 // "on" is a stop word
+     * </pre>
+     * @param text containing words which will be counted; must not be null
+     * @return word count of words which are separted by white-space(s) and only contain letters from the latin alphabet and are not stop words.
+     * @throws NullPointerException if text is null
      */
-    public int wordCount(String phrase) {
-        Objects.requireNonNull(phrase);
+    public int wordCount(String text) {
+        Objects.requireNonNull(text);
 
-        var allWords = Arrays.asList(phrase.split(" "));
+        var allWords = Arrays.asList(text.split(" "));
 
         var validatedWords = validate(allWords);
         validatedWords.replaceAll(s -> String.format(" %s ", s.trim()));
