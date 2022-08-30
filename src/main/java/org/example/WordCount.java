@@ -74,7 +74,7 @@ public class WordCount {
      * @return word count of words which are separted by white-space(s) and only contain letters from the latin alphabet and are not stop words.
      * @throws NullPointerException if text is null
      */
-    public int wordCount(String text) {
+    public int countLatinAlphabeticWords(String text) {
         Objects.requireNonNull(text);
 
         var allWords = Arrays.asList(text.split(" "));
