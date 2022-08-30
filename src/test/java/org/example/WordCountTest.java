@@ -13,7 +13,7 @@ class WordCountTest {
     })
     void getWordWithSingleWord(String phrase) {
         WordCount wc = new WordCount();
-        assertEquals(1, wc.wordCount(phrase));
+        assertEquals(1, wc.countLatinAlphabeticWords(phrase));
     }
 
     @ParameterizedTest
@@ -22,7 +22,7 @@ class WordCountTest {
     })
     void getWordWithMultipleWords(String phrase) {
         WordCount wc = new WordCount();
-        assertEquals(3, wc.wordCount(phrase));
+        assertEquals(3, wc.countLatinAlphabeticWords(phrase));
     }
 
     @ParameterizedTest
@@ -34,7 +34,7 @@ class WordCountTest {
     })
     void getWordWithNumbers(String phrase) {
         WordCount wc = new WordCount();
-        assertEquals(1, wc.wordCount(phrase));
+        assertEquals(1, wc.countLatinAlphabeticWords(phrase));
     }
 
     @ParameterizedTest
@@ -45,7 +45,7 @@ class WordCountTest {
     })
     void getWordWithWhitespaces(String phrase) {
         WordCount wc = new WordCount();
-        assertEquals(3, wc.wordCount(phrase));
+        assertEquals(3, wc.countLatinAlphabeticWords(phrase));
     }
 
     @ParameterizedTest
@@ -57,7 +57,7 @@ class WordCountTest {
     })
     void getWordWithWhitespacesAndNumbers(String phrase) {
         WordCount wc = new WordCount();
-        assertEquals(1, wc.wordCount(phrase));
+        assertEquals(1, wc.countLatinAlphabeticWords(phrase));
     }
 
     @ParameterizedTest
@@ -69,7 +69,7 @@ class WordCountTest {
     })
     void getWordWithSpecialCharacters(String phrase) {
         WordCount wc = new WordCount();
-        assertEquals(1, wc.wordCount(phrase));
+        assertEquals(1, wc.countLatinAlphabeticWords(phrase));
     }
 
     @ParameterizedTest
@@ -81,7 +81,7 @@ class WordCountTest {
     })
     void getWordWithSpecialCharactersAndWhitespacesAndNumbers(String phrase) {
         WordCount wc = new WordCount();
-        assertEquals(1, wc.wordCount(phrase));
+        assertEquals(1, wc.countLatinAlphabeticWords(phrase));
     }
 
     @ParameterizedTest
@@ -90,7 +90,7 @@ class WordCountTest {
     })
     void getWordWithStopWords(String phrase) {
         WordCount wc = new WordCount();
-        assertEquals(0, wc.wordCount(phrase));
+        assertEquals(0, wc.countLatinAlphabeticWords(phrase));
     }
 
     @ParameterizedTest
@@ -99,7 +99,7 @@ class WordCountTest {
     })
     void getUniqueWordCount(String phrase) {
         WordCount wc = new WordCount();
-        assertEquals(9,wc.wordCount(phrase));
+        assertEquals(9,wc.countLatinAlphabeticWords(phrase));
         assertEquals(7, wc.uniqueWords);
     }
 
