@@ -93,11 +93,11 @@ public class WordCount {
     }
 
     private List<String> validate(List<String> allWords) {
-        var p = Pattern.compile("[^A-Za-z .-]");
+        var pattern = Pattern.compile("[^A-Za-z .-]");
         var newAllWords = allWords.stream()
                 .filter(word -> !word.isEmpty())
                 .filter(word -> {
-                    var m = p.matcher(word);
+                    var m = pattern.matcher(word);
                     return !m.find();
                 })
                 .collect(Collectors.toList());
