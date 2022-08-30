@@ -42,8 +42,7 @@ class MainTest {
         Main.main(arg);
 
         String[] lines = outputStream.toString().split(System.lineSeparator());
-        String actual = lines[lines.length - 1];
-        return actual;
+        return lines[lines.length - 1];
     }
 
     @ParameterizedTest
