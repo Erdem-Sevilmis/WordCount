@@ -29,9 +29,9 @@ public class Main {
             return;
         }
 
-        var wordCount = new WordCount();
-        var result = wordCount.countLatinAlphabeticWords(phrase);
-        System.out.printf("Number of words: %d, unique: %d%n", result, wordCount.uniqueWords);
+        var wc = new WordCount();
+        var result = wc.wordCount(phrase);
+        System.out.printf("Number of words: %d, unique: %d%n", result, wc.uniqueWords);
     }
 
 }
