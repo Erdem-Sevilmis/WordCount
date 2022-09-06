@@ -104,7 +104,7 @@ public class WordCounter {
 
         List<String> words = new ArrayList<>();
         newAllWords.forEach(word -> {
-            var newWord = (word.replaceAll("[.-]", " ")).trim();
+            var newWord = (word.replaceAll("[.]", " ")).trim();
             var parts = newWord.split(" ");
             Collections.addAll(words, parts);
         });
