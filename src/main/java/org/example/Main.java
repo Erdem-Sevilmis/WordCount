@@ -22,14 +22,14 @@ public class Main {
                 return;
             }
         } else if (Files.exists(Path.of(args[WORDS_FILE_INDEX]))) {
-            var content = WordCount.readFile(args[WORDS_FILE_INDEX]);
+            var content = WordCounter.readFile(args[WORDS_FILE_INDEX]);
             phrase = String.join(" ", content);
         } else {
             System.out.println("File not found.");
             return;
         }
 
-        var wordCount = new WordCount();
+        var wordCount = new WordCounter();
         var result = wordCount.countLatinAlphabeticWords(phrase);
         System.out.printf("Number of words: %d, unique: %d%n", result, wordCount.uniqueWords);
     }

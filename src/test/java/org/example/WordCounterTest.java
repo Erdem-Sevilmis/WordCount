@@ -6,14 +6,14 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class WordCountTest {
+class WordCounterTest {
     @ParameterizedTest
     @ValueSource(strings = {
             "Word"
     })
     void getWordWithSingleWord(String phrase) {
-        WordCount wordCount = new WordCount();
-        assertEquals(1, wordCount.countLatinAlphabeticWords(phrase));
+        WordCounter wordCounter = new WordCounter();
+        assertEquals(1, wordCounter.countLatinAlphabeticWords(phrase));
     }
 
     @ParameterizedTest
@@ -21,8 +21,8 @@ class WordCountTest {
             "Word word word"
     })
     void getWordWithMultipleWords(String phrase) {
-        WordCount wordCount = new WordCount();
-        assertEquals(3, wordCount.countLatinAlphabeticWords(phrase));
+        WordCounter wordCounter = new WordCounter();
+        assertEquals(3, wordCounter.countLatinAlphabeticWords(phrase));
     }
 
     @ParameterizedTest
@@ -33,8 +33,8 @@ class WordCountTest {
             "Word w1ord wo2rd word3"
     })
     void getWordWithNumbers(String phrase) {
-        WordCount wordCount = new WordCount();
-        assertEquals(1, wordCount.countLatinAlphabeticWords(phrase));
+        WordCounter wordCounter = new WordCounter();
+        assertEquals(1, wordCounter.countLatinAlphabeticWords(phrase));
     }
 
     @ParameterizedTest
@@ -44,8 +44,8 @@ class WordCountTest {
             "Word      word     word     "
     })
     void getWordWithWhitespaces(String phrase) {
-        WordCount wordCount = new WordCount();
-        assertEquals(3, wordCount.countLatinAlphabeticWords(phrase));
+        WordCounter wordCounter = new WordCounter();
+        assertEquals(3, wordCounter.countLatinAlphabeticWords(phrase));
     }
 
     @ParameterizedTest
@@ -56,8 +56,8 @@ class WordCountTest {
             "Word   w1ord    wo2rd word3    "
     })
     void getWordWithWhitespacesAndNumbers(String phrase) {
-        WordCount wordCount = new WordCount();
-        assertEquals(1, wordCount.countLatinAlphabeticWords(phrase));
+        WordCounter wordCounter = new WordCounter();
+        assertEquals(1, wordCounter.countLatinAlphabeticWords(phrase));
     }
 
     @ParameterizedTest
@@ -68,8 +68,8 @@ class WordCountTest {
             "W$ord §$ word"
     })
     void getWordWithSpecialCharacters(String phrase) {
-        WordCount wordCount = new WordCount();
-        assertEquals(1, wordCount.countLatinAlphabeticWords(phrase));
+        WordCounter wordCounter = new WordCounter();
+        assertEquals(1, wordCounter.countLatinAlphabeticWords(phrase));
     }
 
     @ParameterizedTest
@@ -80,8 +80,8 @@ class WordCountTest {
             "W$ord         §$ word         "
     })
     void getWordWithSpecialCharactersAndWhitespacesAndNumbers(String phrase) {
-        WordCount wordCount = new WordCount();
-        assertEquals(1, wordCount.countLatinAlphabeticWords(phrase));
+        WordCounter wordCounter = new WordCounter();
+        assertEquals(1, wordCounter.countLatinAlphabeticWords(phrase));
     }
 
     @ParameterizedTest
@@ -89,8 +89,8 @@ class WordCountTest {
             "off a the on",
     })
     void getWordWithStopWords(String phrase) {
-        WordCount wordCount = new WordCount();
-        assertEquals(0, wordCount.countLatinAlphabeticWords(phrase));
+        WordCounter wordCounter = new WordCounter();
+        assertEquals(0, wordCounter.countLatinAlphabeticWords(phrase));
     }
 
     @ParameterizedTest
@@ -98,9 +98,9 @@ class WordCountTest {
             "Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.",
     })
     void getUniqueWordCount(String phrase) {
-        WordCount wordCount = new WordCount();
-        assertEquals(9,wordCount.countLatinAlphabeticWords(phrase));
-        assertEquals(7, wordCount.uniqueWords);
+        WordCounter wordCounter = new WordCounter();
+        assertEquals(9, wordCounter.countLatinAlphabeticWords(phrase));
+        assertEquals(7, wordCounter.uniqueWords);
     }
 
     @ParameterizedTest
@@ -108,7 +108,7 @@ class WordCountTest {
             "src/main/resources/test.txt"
     })
     void readFromFile(String path) {
-        var results = WordCount.readFile(path);
+        var results = WordCounter.readFile(path);
         assertEquals(5, results.size());
     }
 
@@ -117,11 +117,11 @@ class WordCountTest {
             "ASD/ASD/"
     })
     void readFromFileWithInvalidPath(String path) {
-        assertThrows(RuntimeException.class, () -> WordCount.readFile(path));
+        assertThrows(RuntimeException.class, () -> WordCounter.readFile(path));
     }
 
     @Test
     void readFromFileWithNULLPath() {
-        assertThrows(NullPointerException.class, () -> WordCount.readFile(null));
+        assertThrows(NullPointerException.class, () -> WordCounter.readFile(null));
     }
 }
