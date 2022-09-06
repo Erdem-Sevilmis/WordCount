@@ -99,8 +99,8 @@ class WordCounterTest {
     })
     void getUniqueWordCount(String phrase) {
         WordCounter wordCounter = new WordCounter();
-        assertEquals(9, wordCounter.countLatinAlphabeticWords(phrase));
-        assertEquals(7, wordCounter.uniqueWords);
+        assertEquals(7, wordCounter.countLatinAlphabeticWords(phrase));
+        assertEquals(6, wordCounter.uniqueWords);
     }
 
     @ParameterizedTest
