@@ -14,8 +14,7 @@ public class Main {
 
         if (args.length == 0) {
             System.out.print("Enter Text: ");
-            try {
-                var reader = new BufferedReader(new InputStreamReader(System.in));
+            try (var reader = new BufferedReader(new InputStreamReader(System.in))){
                 phrase = reader.readLine();
             } catch (IOException e) {
                 System.out.println("An error occurred.");
